@@ -1,0 +1,16 @@
+1	CHILD 1 >> [The quick brown fox jumps over the lazy dog.]A001
+2	CHILD 2 << (THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.)A002
+3	CHILD 3 -> {the quick brown fox jumps over the lazy dog.}A003
+4	PARENT~ <- I do not know why I ran out of quotes alright.A004
+1	CHILD 1 >> [The quick brown fox jumps over the lazy dog.]MC01
+2	CHILD 2 << (THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.)MC02
+3	CHILD 3 -> {the quick brown fox jumps over the lazy dog.}MC03
+4	PARENT~ <- I do not know why I ran out of quotes alright.MC04
+1	CHILD 1 >> [The quick brown fox jumps over the lazy dog.]OS01
+2	CHILD 2 << (THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.)OS02
+3	CHILD 3 -> {the quick brown fox jumps over the lazy dog.}OS03
+4	PARENT~ <- I do not know why I ran out of quotes alright.OS04
+1	CHILD 1 >> [The quick brown fox jumps over the lazy dog.]abcd
+2	CHILD 2 << (THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.)efgh
+3	CHILD 3 -> {the quick brown fox jumps over the lazy dog.}ijkl
+4	PARENT~ <- I do not know why I ran out of quotes alright.mnop
