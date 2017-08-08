@@ -7,5 +7,5 @@ The console application created for this assignment is supposed to demonstrate h
 ### Assignment 2
 The console application created for this assignment aims to display the process of passing data via multi-threading which is often used by most modern computer programs to take advantage of multi-core CPUs and to avoid the problems of blocking I/O system calls. This multi-threaded application reads data from an input file and writes it to an output file using the specified number of threads to be used (specified by the user via UNIX command line).
 
-
-NOTE: Both console applications for these assignments are programmed using the C programming language, each of which are accompanied by makefiles and their respective required text files.
+#### Note
+Both console applications for these assignments are programmed using the C programming language, each of which are accompanied by makefiles and their respective required text files.
