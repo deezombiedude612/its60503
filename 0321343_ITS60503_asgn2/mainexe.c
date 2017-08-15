@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------ */
-/*	ITS60503 - Assignment 2										*/
-/*	Operating Systems 											*/
-/*	Student Name: Heng Hian Wee									*/
-/*	Student ID: 0321343											*/
+/*	ITS60503 - Assignment 2					*/
+/*	Operating Systems 					*/
+/*	Student Name: Heng Hian Wee				*/
+/*	Student ID: 0321343					*/
 /* ------------------------------------------------------------ */
 
 #include <stdio.h>
@@ -27,7 +27,7 @@ pthread_mutex_t mutexB = PTHREAD_MUTEX_INITIALIZER;	/* mutex for write thread(s)
 
 int endOfFileMou = 0;	/* indicates whether end of input file has been read */
 int linesFilled = 0;	/* indicates how many lines in the shared buffer are filled (readFile()) */
-int linesRead= 0;		/* indicates how many lines in the shared buffer had been read (writeFile()) */
+int linesRead= 0;	/* indicates how many lines in the shared buffer had been read (writeFile()) */
 
 int main(int argc, char *argv[]) {
 	/* 
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 		argv[0] = ./main 	executable file
 		argv[1] = in.txt	input text file
 		argv[2] = out.txt 	output text file
-		argv[3] = 5			number of threads for each type to be created
+		argv[3] = 5		number of threads for each type to be created
 	*/
 	if(argc != 4) {	/* terminate program if UNIX command does not follow required format */
 		printf("\nWrong input command format.\nFollow the format:\n\n\t$ %s <input_file> <output_file> <number_of_threads>\n\n", argv[0]);
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 	readPtr = fopen(argv[1], "r");
 	writePtr = fopen(argv[2], "w");
 	if(!readPtr || !writePtr) {		/* if input file cannot be opened or output file cannot be created */
-		printf("\n");				/* terminate immediately */
+		printf("\n");			/* terminate immediately */
 		if(!readPtr)
 			printf("Unfortunately, '%s' cannot be opened.\nCheck and see if your input file is missing.\n", argv[1]);
 		if(!writePtr)
@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 		exit(3);
 	}
 
-	int a, b, c, d;						/* counters for creating and joining threads */
+	int a, b, c, d;				/* counters for creating and joining threads */
 	pthread_t rThread[numThreads];		/* reader threads */
 	pthread_t wThread[numThreads];		/* writer threads */
 
@@ -99,11 +99,11 @@ void *readFile() {
 
 	/* infinite loop, to be broken once all lines have been read and placed into the shared buffer */
 	while(1) {
-		pthread_mutex_lock(&mutexA);	/* lock current thread */
-		if(feof(readPtr)) {					/* if nothing else can be read from the input file */
-			endOfFileMou = 1;				/* set end of file flag as TRUE */
+		pthread_mutex_lock(&mutexA);		/* lock current thread */
+		if(feof(readPtr)) {			/* if nothing else can be read from the input file */
+			endOfFileMou = 1;		/* set end of file flag as TRUE */
 			pthread_mutex_unlock(&mutexA);	/* unlock current thread */
-			pthread_exit(0);				/* terminate thread */
+			pthread_exit(0);		/* terminate thread */
 			break;
 		}
 		
@@ -115,7 +115,7 @@ void *readFile() {
 				/* allocate just enough memory for the current line to take in the shared buffer */
 				sharedBuffer[linesFilled] = (char*)malloc(strlen(readBuffer) + 1);		/* allocate enough memory for read buffer array entry */
 				strncpy(sharedBuffer[linesFilled], readBuffer, sizeof(readBuffer));		/* transfer read content into the shared buffer */
-				/* printf("%s", sharedBuffer[linesFilled]); */							/* checks on what is contained in the shared buffer */
+				/* printf("%s", sharedBuffer[linesFilled]); */					/* checks on what is contained in the shared buffer */
 				/* 
 					NOTE: Use strlcpy() instead of strncpy() when using MacOS!
 					Reference: https://developer.apple.com/library/content/documentation/Security/Conceptual/SecureCodingGuide/Articles/BufferOverflows.html
@@ -145,8 +145,8 @@ void *writeFile() {
 			/*strcpy(writeBuffer, sharedBuffer[linesRead]);
 			printf("%s", writeBuffer);*/
 			fputs(sharedBuffer[linesRead], writePtr);	/* place current line from shared buffer into output file */
-			sharedBuffer[linesRead] = NULL;				/* clear the current line in the shared buffer */
-			free(sharedBuffer[linesRead]);				/* free any memory space previously consumed by current line */
+			sharedBuffer[linesRead] = NULL;			/* clear the current line in the shared buffer */
+			free(sharedBuffer[linesRead]);			/* free any memory space previously consumed by current line */
 			
 			/* reset counter if it hits 15 - repetition meant to make sure all lines are read */
 			if(linesRead < 15)
@@ -155,8 +155,8 @@ void *writeFile() {
 				linesRead = 0;
 		}
 		else if(!sharedBuffer[linesRead] && endOfFileMou == 1) {	/* if current shared buffer line is empty and end of file flag is TRUE*/
-			pthread_mutex_unlock(&mutexB);	/* unlock current thread */
-			pthread_exit(0);				/* terminate thread */
+			pthread_mutex_unlock(&mutexB);				/* unlock current thread */
+			pthread_exit(0);					/* terminate thread */
 			break;
 		}
 		pthread_mutex_unlock(&mutexB);	/* unlock current thread */
@@ -164,7 +164,7 @@ void *writeFile() {
 }
 
 /* ------------------------------------------------------------ */
-/*	END OF PROGRAM			 									*/
+/*	END OF PROGRAM						*/
 /* ------------------------------------------------------------ */
 
 
